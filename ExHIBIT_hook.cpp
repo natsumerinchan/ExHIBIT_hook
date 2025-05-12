@@ -326,7 +326,7 @@ __declspec(dllexport) BOOL WINAPI RemoveFontHook() {
  * @return 是否初始化成功
  */
 BOOL InitLogFile() {
-    hLogFile = CreateFileA("soranana_chs.log", GENERIC_WRITE, 
+    hLogFile = CreateFileA("ExHIBIT_hook.log", GENERIC_WRITE, 
         FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     return hLogFile != INVALID_HANDLE_VALUE;
 }
