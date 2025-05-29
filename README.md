@@ -15,4 +15,5 @@ Visual Studio 2022后运行build.bat编译，然后<br>
 ## 已测试游戏
 - [【La'cryma】空を飛ぶ、7つ目の魔法。](https://vndb.org/v1617)
 - [【SkyFish】蒼穹のソレイユ～FULLMETAL EYES～](https://vndb.org/v4910)
+- [【MOONSTONE】Magical Marriage Lunatics!!](https://vndb.org/v12559)
 

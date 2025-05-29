@@ -114,7 +114,7 @@ void LogMessage(const char* format, ...) {
  * @return 返回固定标题字符串
  */
 static LPCWSTR GetPatchedTitle() {
-    return L"空を飛ぶ、７つ目の魔法。 claude-3.7-sonnet翻译补丁 || 作者：natsumerin@御爱同萌==雨宮ゆうこ@moyu || 允许转载但严禁倒卖和冒充人工汉化发布";
+    return L"Magical Marriage Lunatics!! claude-3.7-sonnet翻译补丁 || 作者：natsumerin@御爱同萌==雨宮ゆうこ@moyu || 允许转载但严禁倒卖和冒充人工汉化发布";
 }
 
 HWND WINAPI HookedCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, 
