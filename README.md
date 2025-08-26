@@ -17,4 +17,5 @@ Visual Studio 2022后运行build.bat编译，然后<br>
 - [【SkyFish】蒼穹のソレイユ～FULLMETAL EYES～](https://vndb.org/v4910)
 - [【MOONSTONE】Magical Marriage Lunatics!!](https://vndb.org/v12559)
 - [【POISONエクスタシー】らぶらぶ♥プリンセス ～お姫さまがいっぱい！もっとエッチなハーレム生活!!～](https://vndb.org/v16657)
+- [【POISONエクスタシー】らぶ♥らぶ♥らいふ ～お嬢様７人とラブラブハーレム生活～](https://vndb.org/v13842)
 
