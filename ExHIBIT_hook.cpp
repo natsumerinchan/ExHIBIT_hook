@@ -4,7 +4,7 @@
  * 
  * 主要功能：
  * - 优先从rld_chs目录加载脚本文件
- * - 自动将游戏字体修改为黑体
+ * - 自动将游戏字体修改为指定字体
  * - 修改窗口标题显示汉化信息
  * 
  * 采用Detours技术实现API Hook
@@ -211,7 +211,7 @@ HANDLE WINAPI HookedCreateFileA(
 /**
  * @brief CreateFontIndirectA Hook函数 - 修改游戏字体
  * 
- * 自动将游戏字体替换为黑体，支持中文字符显示
+ * 自动将游戏字体替换为指定字体，支持中文字符显示
  * 
  * @param lplf 原始字体参数
  * @return 新字体句柄
@@ -234,14 +234,14 @@ HFONT WINAPI HookedCreateFontIndirectA(const LOGFONTA* lplf) {
     lfW.lfItalic = lplf->lfItalic;
     lfW.lfUnderline = lplf->lfUnderline;
     lfW.lfStrikeOut = lplf->lfStrikeOut;
-    lfW.lfCharSet = 0x86; // GB2312字符集
+    lfW.lfCharSet = 0x86; // 0x80=cp932 ; 0x86=GB2312
     lfW.lfOutPrecision = lplf->lfOutPrecision;
     lfW.lfClipPrecision = lplf->lfClipPrecision;
     lfW.lfQuality = lplf->lfQuality;
     lfW.lfPitchAndFamily = lplf->lfPitchAndFamily;
     
-    // 设置黑体
-    wcscpy_s(lfW.lfFaceName, L"黑体");
+    // 设置字体
+    wcscpy_s(lfW.lfFaceName, L"WenQuanYi Micro Hei");
 
     // 转换源字体名(CP932)到UTF-8并记录修改信息
     char srcFontNameUtf8[64] = {0};
@@ -252,7 +252,7 @@ HFONT WINAPI HookedCreateFontIndirectA(const LOGFONTA* lplf) {
         WideCharToMultiByte(CP_UTF8, 0, wbuffer, -1, srcFontNameUtf8, sizeof(srcFontNameUtf8), NULL, NULL);
         free(wbuffer);
     }
-    LogMessage("[FontHook] Font modified: Charset:%d->%d, Face:%s->黑体",
+    LogMessage("[FontHook] Font modified: Charset:%d->%d, Face:%s->WenQuanYi Micro Hei",
         lplf->lfCharSet, lfW.lfCharSet, srcFontNameUtf8[0] ? srcFontNameUtf8 : lplf->lfFaceName);
 
     // 调用Wide版本的函数
