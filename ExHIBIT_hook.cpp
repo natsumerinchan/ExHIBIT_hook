@@ -114,7 +114,7 @@ void LogMessage(const char* format, ...) {
  * @return 返回固定标题字符串
  */
 static LPCWSTR GetPatchedTitle() {
-    return L"らぶ☆らぶ☆らいふ ～お嬢様７人とラブラブハーレム生活～ gemini-2.5-pro翻译补丁 || 作者：natsumerin@御爱同萌==雨宮ゆうこ@moyu || 允许转载但严禁倒卖和冒充人工汉化发布";
+    return L"magiski gemini-2.5-pro Translation Patch || author: natsumerin@ai2.moe==AmamiyaYuuko@moyu";
 }
 
 HWND WINAPI HookedCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, 
@@ -283,7 +283,7 @@ __declspec(dllexport) BOOL WINAPI InstallFontHook() {
     DetourUpdateThread(GetCurrentThread());
     
     // 安装hook
-    DetourAttach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
+    // DetourAttach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
     DetourAttach(&(PVOID&)OriginalCreateFileA, HookedCreateFileA);
     DetourAttach(&(PVOID&)OriginalCreateWindowExA, HookedCreateWindowExA);
     DetourAttach(&(PVOID&)OriginalCreateWindowExW, HookedCreateWindowExW);
@@ -307,7 +307,7 @@ __declspec(dllexport) BOOL WINAPI RemoveFontHook() {
     DetourUpdateThread(GetCurrentThread());
     
     // 卸载hook
-    DetourDetach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
+    // DetourDetach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
     DetourDetach(&(PVOID&)OriginalCreateFileA, HookedCreateFileA);
     DetourDetach(&(PVOID&)OriginalCreateWindowExA, HookedCreateWindowExA);
     DetourDetach(&(PVOID&)OriginalCreateWindowExW, HookedCreateWindowExW);
