@@ -114,7 +114,7 @@ void LogMessage(const char* format, ...) {
  * @return 返回固定标题字符串
  */
 static LPCWSTR GetPatchedTitle() {
-    return L"magiski gemini-2.5-pro Translation Patch || author: natsumerin@ai2.moe==AmamiyaYuuko@moyu";
+    return L"にゃんカフェマキアート ～猫がいるカフェのえっち事情～ gemini-2.5-pro翻译补丁 || 作者：natsumerin@御爱同萌==雨宮ゆうこ@moyu || 允许转载但严禁倒卖和冒充人工汉化发布";
 }
 
 HWND WINAPI HookedCreateWindowExW(DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, 
@@ -241,7 +241,7 @@ HFONT WINAPI HookedCreateFontIndirectA(const LOGFONTA* lplf) {
     lfW.lfPitchAndFamily = lplf->lfPitchAndFamily;
     
     // 设置字体
-    wcscpy_s(lfW.lfFaceName, L"WenQuanYi Micro Hei");
+    wcscpy_s(lfW.lfFaceName, L"黑体");
 
     // 转换源字体名(CP932)到UTF-8并记录修改信息
     char srcFontNameUtf8[64] = {0};
@@ -252,7 +252,7 @@ HFONT WINAPI HookedCreateFontIndirectA(const LOGFONTA* lplf) {
         WideCharToMultiByte(CP_UTF8, 0, wbuffer, -1, srcFontNameUtf8, sizeof(srcFontNameUtf8), NULL, NULL);
         free(wbuffer);
     }
-    LogMessage("[FontHook] Font modified: Charset:%d->%d, Face:%s->WenQuanYi Micro Hei",
+    LogMessage("[FontHook] Font modified: Charset:%d->%d, Face:%s->黑体",
         lplf->lfCharSet, lfW.lfCharSet, srcFontNameUtf8[0] ? srcFontNameUtf8 : lplf->lfFaceName);
 
     // 调用Wide版本的函数
@@ -283,7 +283,7 @@ __declspec(dllexport) BOOL WINAPI InstallFontHook() {
     DetourUpdateThread(GetCurrentThread());
     
     // 安装hook
-    // DetourAttach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
+    DetourAttach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
     DetourAttach(&(PVOID&)OriginalCreateFileA, HookedCreateFileA);
     DetourAttach(&(PVOID&)OriginalCreateWindowExA, HookedCreateWindowExA);
     DetourAttach(&(PVOID&)OriginalCreateWindowExW, HookedCreateWindowExW);
@@ -307,7 +307,7 @@ __declspec(dllexport) BOOL WINAPI RemoveFontHook() {
     DetourUpdateThread(GetCurrentThread());
     
     // 卸载hook
-    // DetourDetach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
+    DetourDetach(&(PVOID&)OriginalCreateFontIndirectA, HookedCreateFontIndirectA);
     DetourDetach(&(PVOID&)OriginalCreateFileA, HookedCreateFileA);
     DetourDetach(&(PVOID&)OriginalCreateWindowExA, HookedCreateWindowExA);
     DetourDetach(&(PVOID&)OriginalCreateWindowExW, HookedCreateWindowExW);
